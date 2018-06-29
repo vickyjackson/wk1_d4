@@ -33,16 +33,26 @@ def total_money(people)
 end
 
 def loaning_money(lender, lendee, amount)
-  new_array = []
   lender[:monies] -= amount
   lendee[:monies] += amount
-  new_array << lender[:monies] << lendee[:monies]
 end
 
-def favourite_food(people)
-  all_foods_array = []
+def all_favourite_food(people)
+  all_favourite_food = []
   for person in people
-    all_foods_array << person[:favourite][:snacks][0]
+    for snack in person[:favourites][:snacks]
+      all_favourite_food.push(snack)
+    end
   end
-  return all_foods_array
+  return all_favourite_food
+end
+
+def people_with_no_friends(people)
+  new_array = []
+  for person in people
+    if (person[:friends] == [])
+      new_array.push(person[:name])
+    end
+  end
+  return new_array
 end
